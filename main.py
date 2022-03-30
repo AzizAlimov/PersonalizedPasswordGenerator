@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from PasswordManager import PasswordManager
@@ -52,5 +54,6 @@ async def selected_password(choice: PasswordChoice, client_id: int = 1):
         manager.unselected_password(unselected, client_id)
 
 
+port = int(os.environ.get("PORT", 8000))
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=port)
